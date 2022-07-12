@@ -13,7 +13,7 @@
     <td><a href="#"><img src="./iso_calender.svg" /></a></td>
   </tr>
   <tr>
-    <td><a href="#"><img src="./github-habits.svg" /></a></td>
+    <td colspan="2"><a href="#"><img src="./github-habits.svg" /></a></td>
   </tr>
 
 </table>
