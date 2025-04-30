@@ -10,17 +10,16 @@ jobs:
   achievements:
     runs-on: ubuntu-latest
     steps:
-      - uses: lowlighter/metrics@latest
+      - name: Compact display
+        uses: lowlighter/metrics@latest
         with:
-          filename: achievements.svg
+          filename: metrics.plugin.achievements.compact.svg
           token: ${{ secrets.METRICS_TOKEN }}
-          user: overcookedpanda
-          base: achievements
+          base: ""
           plugin_achievements: yes
-          plugin_achievements_threshold: C      # Display achievements with rank B or higher
-          plugin_achievements_secrets: yes      # Display unlocked secrets achievements
-          plugin_achievements_display: detailed
-          plugin_achievements_limit: 0          # Display all unlocked achievements (no limit)
+          plugin_achievements_only: polyglot, stargazer, sponsor, deployer, member, maintainer, developer, scripter, packager, explorer, infographile, manager
+          plugin_achievements_display: compact
+          plugin_achievements_threshold: X
 
   github-metrics:
     runs-on: ubuntu-latest
