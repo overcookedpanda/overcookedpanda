@@ -1,16 +1,25 @@
 name: Metrics
 on:
-  # Schedule daily updates
-  schedule: [{cron: "0 * * * *"}]
-  # (optional) Run workflow manually
+  schedule: [{cron: "0 */12 * * *"}]
   workflow_dispatch:
-  # (optional) Run workflow when pushing on master/main
   push: {branches: ["master", "main"]}
 jobs:
-  achievements:
+  profile-metrics:
     runs-on: ubuntu-latest
     steps:
-      - name: Compact display
+      - name: Header
+        uses: gh-metrics/metrics@master
+        with:
+          filename: header.svg
+          token: ${{ secrets.METRICS_TOKEN }}
+          user: overcookedpanda
+          template: classic
+          base: header
+          optimize: css, xml
+          retries: 3
+          retries_delay: 30
+
+      - name: Achievements
         uses: gh-metrics/metrics@master
         with:
           filename: metrics.plugin.achievements.compact.svg
@@ -20,64 +29,52 @@ jobs:
           plugin_achievements_only: polyglot, stargazer, sponsor, deployer, member, maintainer, developer, scripter, packager, explorer, infographile, manager
           plugin_achievements_display: compact
           plugin_achievements_threshold: X
+          optimize: css, xml
+          retries: 3
+          retries_delay: 30
 
-  github-metrics:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: gh-metrics/metrics@master
-        with:
-          filename: header.svg
-          # You'll need to setup a personal token in your secrets.
-          token: ${{ secrets.METRICS_TOKEN }}
-
-          # Options
-          user: overcookedpanda
-          template: classic
-          base: header
-  lines:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: gh-metrics/metrics@master
+      - name: Lines of code
+        uses: gh-metrics/metrics@master
         with:
           filename: lines-of-code.svg
           token: ${{ secrets.METRICS_TOKEN }}
           base: "repositories"
           plugin_lines: yes
+          optimize: css, xml
+          retries: 3
+          retries_delay: 30
 
-  acti_comm:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: gh-metrics/metrics@master
+      - name: Activity and community
+        uses: gh-metrics/metrics@master
         with:
           filename: acti_comm.svg
-          # You'll need to setup a personal token in your secrets.
           token: ${{ secrets.METRICS_TOKEN }}
-
-          # Options
           user: overcookedpanda
           template: classic
           base: activity, community
-          
-  iso_calender:
+          optimize: css, xml
+          retries: 3
+          retries_delay: 30
+
+  plugins-metrics:
     runs-on: ubuntu-latest
     steps:
-      - uses: gh-metrics/metrics@master
+      - name: Isometric calendar
+        uses: gh-metrics/metrics@master
         with:
           filename: iso_calender.svg
-          # You'll need to setup a personal token in your secrets.
           token: ${{ secrets.METRICS_TOKEN }}
-
-          # Options
           user: overcookedpanda
           template: classic
           base: ""
           plugin_isocalendar: yes
           plugin_isocalendar_duration: half-year
+          optimize: css, xml
+          retries: 3
+          retries_delay: 30
 
-  habits:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: gh-metrics/metrics@master
+      - name: Habits
+        uses: overcookedpanda/metrics@master
         with:
           filename: github-habits.svg
           token: ${{ secrets.METRICS_TOKEN }}
@@ -85,39 +82,36 @@ jobs:
           base: ""
           template: classic
           plugin_habits: yes
-          plugin_habits_from: 200       # Use 200 events to compute habits
-          plugin_habits_days: 14        # Keep only events from last 14 days
-          plugin_habits_charts: yes     # Display charts section
-          plugin_habits_trim: yes       # Trim unused hours on daily chart
+          plugin_habits_from: 200
+          plugin_habits_days: 14
+          plugin_habits_charts: yes
+          plugin_habits_trim: yes
+          optimize: css, xml
+          retries: 3
+          retries_delay: 30
 
-  issue_pr_lang:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: gh-metrics/metrics@master
+      - name: Issues, PRs, and languages
+        uses: gh-metrics/metrics@master
         with:
           filename: issue_pr_lang.svg
-          # You'll need to setup a personal token in your secrets.
           token: ${{ secrets.METRICS_TOKEN }}
-
-          # Options
           user: overcookedpanda
           template: classic
           base: ""
           plugin_followup: yes
           plugin_languages: yes
+          optimize: css, xml
+          retries: 3
+          retries_delay: 30
 
-          
-  repositories:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: gh-metrics/metrics@master
+      - name: Repositories
+        uses: gh-metrics/metrics@master
         with:
           filename: repositories.svg
-          # You'll need to setup a personal token in your secrets.
           token: ${{ secrets.METRICS_TOKEN }}
-
-          # Options
           user: overcookedpanda
           template: classic
           base: repositories
-
+          optimize: css, xml
+          retries: 3
+          retries_delay: 30
