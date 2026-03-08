@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Header
-        uses: gh-metrics/metrics@master
+        uses: overcookedpanda/metrics@master
         with:
           filename: header.svg
           token: ${{ secrets.METRICS_TOKEN }}
@@ -20,7 +20,7 @@ jobs:
           retries_delay: 30
 
       - name: Achievements
-        uses: gh-metrics/metrics@master
+        uses: overcookedpanda/metrics@master
         with:
           filename: metrics.plugin.achievements.compact.svg
           token: ${{ secrets.METRICS_TOKEN }}
@@ -34,7 +34,7 @@ jobs:
           retries_delay: 30
 
       - name: Lines of code
-        uses: gh-metrics/metrics@master
+        uses: overcookedpanda/metrics@master
         with:
           filename: lines-of-code.svg
           token: ${{ secrets.METRICS_TOKEN }}
@@ -45,7 +45,7 @@ jobs:
           retries_delay: 30
 
       - name: Activity and community
-        uses: gh-metrics/metrics@master
+        uses: overcookedpanda/metrics@master
         with:
           filename: acti_comm.svg
           token: ${{ secrets.METRICS_TOKEN }}
@@ -60,7 +60,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Isometric calendar
-        uses: gh-metrics/metrics@master
+        uses: overcookedpanda/metrics@master
         with:
           filename: iso_calender.svg
           token: ${{ secrets.METRICS_TOKEN }}
@@ -91,7 +91,7 @@ jobs:
           retries_delay: 30
 
       - name: Issues, PRs, and languages
-        uses: gh-metrics/metrics@master
+        uses: overcookedpanda/metrics@master
         with:
           filename: issue_pr_lang.svg
           token: ${{ secrets.METRICS_TOKEN }}
@@ -105,7 +105,7 @@ jobs:
           retries_delay: 30
 
       - name: Repositories
-        uses: gh-metrics/metrics@master
+        uses: overcookedpanda/metrics@master
         with:
           filename: repositories.svg
           token: ${{ secrets.METRICS_TOKEN }}
