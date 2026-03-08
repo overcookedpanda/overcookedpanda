@@ -1,6 +1,6 @@
 name: Metrics
 on:
-  schedule: [{cron: "0 */12 * * *"}]
+  schedule: [{cron: "0 6 * * *"}]
   workflow_dispatch:
   push: {branches: ["master", "main"]}
 jobs:
@@ -19,7 +19,7 @@ jobs:
           retries: 3
           retries_delay: 30
 
-      - name: Achievements
+      - name: Achievements (compact)
         uses: overcookedpanda/metrics@master
         with:
           filename: metrics.plugin.achievements.compact.svg
@@ -28,6 +28,19 @@ jobs:
           plugin_achievements: yes
           plugin_achievements_only: polyglot, stargazer, sponsor, deployer, member, maintainer, developer, scripter, packager, explorer, infographile, manager
           plugin_achievements_display: compact
+          plugin_achievements_threshold: X
+          optimize: css, xml
+          retries: 3
+          retries_delay: 30
+
+      - name: Achievements (detailed)
+        uses: overcookedpanda/metrics@master
+        with:
+          filename: achievements.svg
+          token: ${{ secrets.METRICS_TOKEN }}
+          base: ""
+          plugin_achievements: yes
+          plugin_achievements_display: detailed
           plugin_achievements_threshold: X
           optimize: css, xml
           retries: 3
